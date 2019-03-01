@@ -1,0 +1,12 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - echo CODEBUILD_RESOLVED_SOURCE_VERSION=$CODEBUILD_RESOLVED_SOURCE_VERSION
+      - apt-get update && apt-get install -y python-dev
+      - curl -O https://bootstrap.pypa.io/get-pip.py
+      - python get-pip.py
+      - pip install awsebcli --upgrade
+      - eb init $EBS_APPLICATION -r $AWS_REGION -p PHP
+      - eb deploy -l $CODEBUILD_RESOLVED_SOURCE_VERSION $EBS_ENVIRONMENT
