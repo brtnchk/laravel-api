@@ -1,9 +1,0 @@
-image: atlassian/default-image:2
-
-pipelines:
-  branches:
-    '{master,develop}':
-      - step:
-          script:
-            - chmod +x gitsync.sh
-            - ./gitsync.sh
